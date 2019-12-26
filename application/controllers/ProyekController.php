@@ -37,7 +37,6 @@ class ProyekController extends CI_Controller
         $this->form_validation->set_rules('user_id', 'Tipe User', "required|in_list[{$user_ids_in_list}]");
         $this->form_validation->set_rules('tanggal_mulai', 'Tanggal Mulai', 'required|callback_tanggal_mulai');
         $this->form_validation->set_rules('tanggal_selesai', 'Tanggal Selesai', 'required|callback_tanggal_selesai');
-        $this->form_validation->set_rules('progress', 'Progress', 'required|greater_than[-1]|less_than[101]');
         
         // jika gagal kembalikan user untuk mengisi ulang inputan
         $data['users'] = $this->db->where(['tipe_user =' => 'rekanan'])->get($this->User->table)->result();
@@ -53,7 +52,7 @@ class ProyekController extends CI_Controller
         // redirect ke form inputan dan oper pesan berhasil
         $this->session->set_flashdata('success', 'Berhasil menambah data proyek');
 
-        redirect('proyek/create');
+        redirect('proyek');
     }
 
     public function edit($proyek)
@@ -83,7 +82,6 @@ class ProyekController extends CI_Controller
         $this->form_validation->set_rules('user_id', 'Tipe User', "required|in_list[{$user_ids_in_list}]");
         $this->form_validation->set_rules('tanggal_mulai', 'Tanggal Mulai', 'required|callback_tanggal_mulai');
         $this->form_validation->set_rules('tanggal_selesai', 'Tanggal Selesai', 'required|callback_tanggal_selesai');
-        $this->form_validation->set_rules('progress', 'Progress', 'required|greater_than[-1]|less_than[101]');
 
         // jika gagal kembalikan user untuk mengisi ulang inputan
         $data['users'] = $this->db->where(['tipe_user =' => 'rekanan'])->get($this->User->table)->result();
@@ -98,7 +96,7 @@ class ProyekController extends CI_Controller
 
         // redirect ke form inputan dan oper pesan berhasil
         $this->session->set_flashdata('success', 'Berhasil mengupdate data proyek');
-        redirect($this->agent->referrer());
+        redirect('proyek');
     }
 
     public function destroy($proyek)

@@ -10,5 +10,10 @@ class Proyek extends CI_Model
     {
         return $this->Helper->find($this->User->table, $user);
     }
+
+    public function uraianKerjas($proyek_id)
+    {
+        return $this->db->where(['proyek_id' => $proyek_id])->get($this->UraianKerja->table)->result();
+    }
     
 }

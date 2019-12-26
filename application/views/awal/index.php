@@ -42,6 +42,7 @@
                                             $no += 1;
                                             $urlEdit = base_url("index.php/proyek/$data->id/edit");
                                             $urlDestroy = base_url("index.php/proyek/$data->id/destroy");
+                                            
                                              
                                             if ( $data->progress < 34 )
                                             {
@@ -56,6 +57,8 @@
                                             {
                                                 $warna_progress_bar = "bg-success";
                                             }
+
+
                                             // if($no == 3) break;
 												echo "
 											<tr>

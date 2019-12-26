@@ -60,7 +60,7 @@
                                             $urlDestroy = base_url("index.php/user/$data->id/destroy");
                                             $tipeUser = ucwords($data->tipe_user);
                                             // if($no == 3) break;
-                                            if( $this->session->userdata('user')->tipe_user == "admin" && $data->tipe_user == "admin")
+                                            if( ($this->session->userdata('user')->tipe_user == "superadmin" && $data->tipe_user == "superadmin") || ($this->session->userdata('user')->tipe_user == "admin" && $data->tipe_user == "admin" && $data->id == $this->session->userdata('user')->id))
                                             {
                                                 echo "
                                             <tr>
@@ -77,7 +77,23 @@
                                                     </a>
                                                 </td>
                                             </tr>";
-                                            }else 
+                                            }elseif($data->tipe_user == "admin" && $data->id != $this->session->userdata('user')->id && $this->session->userdata('user')->tipe_user != "superadmin")
+                                            {
+                                                echo "
+                                            <tr>
+                                                <td></td>
+                                                <td>$no</td>
+                                                <td>$data->id</td>
+                                                <td>$data->username</td>
+                                                <td>$data->nama_lengkap</td>
+                                                <td>*****</td>
+                                                <td>$tipeUser</td>
+                                                <td class='datatable-ct'>
+                                                    
+                                                </td>
+                                            </tr>";
+                                            }
+                                            else 
                                             {
                                                 echo "
                                                 <tr>

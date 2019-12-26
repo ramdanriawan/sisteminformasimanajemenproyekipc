@@ -8,12 +8,12 @@ class UserController extends CI_Controller
     public function index()
     {
         //tampilkan data sesuai hak akses, jika admin tampilkan semua, jika tidak tampilkan tertentu saja
-        if ( $this->session->userdata('user')->tipe_user == "admin" )
+        if ( $this->session->userdata('user')->tipe_user == "superadmin" )
         {
             $data['datas'] = $this->db->get($this->User->table, 100)->result();
         }else
         {
-            $data['datas'] = $this->db->where(['tipe_user !=' => 'admin'])->get($this->User->table, 100)->result();
+            $data['datas'] = $this->db->where(['tipe_user !=' => 'superadmin'])->get($this->User->table, 100)->result();
         }
 
         $this->Helper->view('user/index', $data);
@@ -35,7 +35,7 @@ class UserController extends CI_Controller
         $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'required|min_length[5]|max_length[50]');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]|max_length[30]');
         $this->form_validation->set_rules('password_confirmation', 'Konfirmasi Password', 'required|min_length[5]|max_length[30]|matches[password]');
-        $this->form_validation->set_rules('tipe_user', 'Tipe User', 'required|in_list[manager,rekanan]');
+        $this->form_validation->set_rules('tipe_user', 'Tipe User', 'required|in_list[manager,rekanan,admin]');
 
         if ( !$this->form_validation->run() ) return $this->Helper->view('user/create');
         
@@ -49,7 +49,7 @@ class UserController extends CI_Controller
 
         $this->session->set_flashdata('success', 'Berhasil menambah data user');
 
-        redirect('user/create');
+        redirect('user');
     }
 
     public function edit($user)
@@ -57,7 +57,7 @@ class UserController extends CI_Controller
         $data['user'] = $this->Helper->findOrFail($this->User->table, $user);
 
         // handle user jika berusaha mengedit admin melalui id yang dirubah di url
-        if ( $this->session->userdata('user')->tipe_user != "admin" && $data['user']->tipe_user == "admin" ) show_404();
+        if ( $this->session->userdata('user')->tipe_user != "superadmin" && $data['user']->tipe_user == "superadmin" ) show_404();
 
         $this->Helper->view('user/edit', $data);
     }
@@ -67,12 +67,19 @@ class UserController extends CI_Controller
         $data['user'] = $this->Helper->findOrFail($this->User->table, $user);
 
         // handle user jika berusaha mengedit admin melalui id yang dirubah di url melalui post
-        if ( $this->session->userdata('user')->tipe_user != "admin" && $data['user']->tipe_user == "admin" )  show_404();
+        if ( $this->session->userdata('user')->tipe_user != "superadmin" && $data['user']->tipe_user == "superadmin" )  show_404();
 
         $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'required|min_length[5]|max_length[30]');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]|max_length[50]');
         $this->form_validation->set_rules('password_confirmation', 'Konfirmasi Password', 'required|min_length[5]|max_length[30]|matches[password]');
-        $this->form_validation->set_rules('tipe_user', 'Tipe User', 'required|in_list[manager,rekanan]');
+
+        if ( $this->session->userdata('user')->tipe_user == "superadmin" ) 
+        {
+            $this->form_validation->set_rules('tipe_user', 'Tipe User', 'required|in_list[superadmin]');
+        }else 
+        {
+            $this->form_validation->set_rules('tipe_user', 'Tipe User', 'required|in_list[manager,rekanan,admin]');
+        }
         
         if ( !$this->form_validation->run() ) return $this->Helper->view('user/edit', $data);
 
@@ -86,7 +93,7 @@ class UserController extends CI_Controller
         
         $this->session->set_flashdata(['success' => 'Berhasil mengupdate data user']);
 
-        redirect($this->agent->referrer());
+        redirect('user');
     }
 
     public function destroy($user)

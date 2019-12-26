@@ -96,12 +96,14 @@
 														<label class="login2">SATUAN</label>
 													</div>
 													<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-														<select class="form-control custom-select-value" name="satuan[]">
+														<!-- <select class="form-control custom-select-value" name="satuan[]">
 															<option value=''>-- PILIH SATUAN --</option>
 															<option value='unit'>UNIT</option>
 															<option value='m'>M</option>
 															<option value='Ls'>Ls</option>
-														</select>
+														</select> -->
+														<input type="text"
+															name='satuan[]' class="form-control" placeholder="Input Satuan" value=''>
 													</div>
 												</div>
 											</div>
@@ -161,12 +163,14 @@
 															<label class="login2">SATUAN</label>
 														</div>
 														<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-															<select class="form-control custom-select-value" name="satuan[]">
+															<!-- <select class="form-control custom-select-value" name="satuan[]">
 																<option value=''>-- PILIH SATUAN --</option>
 																<option value='unit' <?php echo (set_value("satuan[$index]") == "" && $uraian_kerja_detail->satuan == "unit") || (set_value("satuan[$index]") == "unit" && $uraian_kerja_detail->satuan == "unit") ? "selected": ""; ?>>UNIT</option>
 																<option value='m' <?php echo (set_value("satuan[$index]") == "" && $uraian_kerja_detail->satuan == "m") || (set_value("satuan[$index]") == "m" && $uraian_kerja_detail->satuan == "m") ? "selected": ""; ?>>M </option>
 																<option value='Ls' <?php echo (set_value("satuan[$index]") == "" && $uraian_kerja_detail->satuan == "Ls") || (set_value("satuan[$index]") == "Ls" && $uraian_kerja_detail->satuan == "Ls") ? "selected": ""; ?>>Ls</option>
-															</select>
+															</select> -->
+															<input type="text"
+															name='satuan[]' class="form-control" placeholder="Input Satuan" value='<?php echo $uraian_kerja_detail->satuan ?? set_value("satuan[$index]"); ?>'>
 															<?php echo "<label class='text-danger'>" . form_error("satuan[$index]") . "</label>"; ?>
 														</div>
 													</div>

@@ -77,6 +77,29 @@
 											</div>
 										</div>
 									</div>
+									<?php if( $this->session->userdata('user')->tipe_user == "superadmin" ): ?>
+									<div class="form-group-inner">
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+												<label class="login2">TIPE USER</label>
+											</div>
+											<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+												<select class="form-control custom-select-value" name="tipe_user" required>
+													<option value='manager'
+														<?php echo set_value('tipe_user') == "manager" ? "selected" : ""; ?>>
+														Manager</option>
+													<option value='rekanan'
+														<?php echo set_value('tipe_user') == "rekanan" ? "selected" : ""; ?>>
+														Rekanan</option>
+													<option value='admin'
+														<?php echo set_value('tipe_user') == "admin" ? "selected" : ""; ?>>
+														Admin</option>
+												</select>
+												<?php echo "<label class='text-danger'>" . form_error('tipe_user') . "</label>"; ?>
+											</div>
+										</div>
+									</div>
+									<?php else: ?>
 									<div class="form-group-inner">
 										<div class="row">
 											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -95,6 +118,7 @@
 											</div>
 										</div>
 									</div>
+									<?php endif; ?>
 									<div class="login-btn-inner">
 										<div class="row">
 											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>

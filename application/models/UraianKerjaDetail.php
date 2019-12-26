@@ -26,4 +26,12 @@ class UraianKerjaDetail extends CI_Model
             'minggu_ke' => $mingguKe
             ])->get($this->Realisasi->table)->row();
     }
+
+    
+    public function realisasis($uraianKerjaDetail)
+    {
+        return $this->db->where([
+            'uraian_kerja_detail_id' => $uraianKerjaDetail
+            ])->get($this->Realisasi->table)->result();
+    }
 }

@@ -85,9 +85,9 @@
 	<div class="left-sidebar-pro">
 		<nav id="sidebar" class="">
 			<div class="sidebar-header">
-				<a href="index.html"><img class="main-logo" src="<?php echo base_url('assets/img/logo/Logoipc.jpg'); ?>"
+				<a href="index.html"><img class="main-logo" src="<?php echo base_url('assets/img/logo/logoipc.jpg'); ?>"
 						alt="" /></a>
-						<strong><img src="<?php echo base_url('assets/img/logo/Logoipc.jpg'); ?>" alt="" /></strong>
+						<strong><img src="<?php echo base_url('assets/img/logo/logoipc.jpg'); ?>" alt="" /></strong>
 
 			</div>
 			<div class="left-custom-menu-adp-wrap comment-scrollbar">
@@ -98,14 +98,14 @@
 								<h3 style="color: white;">Menu Navigasi</h3>
 							</a>
 						</li>
-						<?php if(in_array($this->session->userdata('user')->tipe_user, ['admin', 'manager'])) : ?>
+						<?php if(in_array($this->session->userdata('user')->tipe_user, ['superadmin', 'admin', 'manager'])) : ?>
 						<li>
 							<a href='<?php echo base_url("index.php/awal"); ?>'
 								class='<?php echo $this->uri->segment(1) == "awal" ? "active" : ""; ?>'><strong>Dashboard</strong></a>
 						</li>
 						<?php endif; ?>
 						<!-- untuk mengatur hak akses menu admin -->
-						<?php if($this->session->userdata('user')->tipe_user == "admin"): ?>
+						<?php if($this->session->userdata('user')->tipe_user == "admin" || $this->session->userdata('user')->tipe_user == "superadmin"): ?>
 						<li>
 							<a href='<?php echo base_url("index.php/user"); ?>'
 								class='<?php echo $this->uri->segment(1) == "user" ? "active" : ""; ?>'><strong>Data
@@ -227,14 +227,14 @@
 													<ul role="menu"
 														class="dropdown-header-top author-log dropdown-menu animated zoomIn">
 														<li>
+															<a href="<?php echo base_url("index.php/user/{$this->session->userdata('user')->id}/edit"); ?>">
+																<span class="fa fa-gear"></span> &nbsp;Edit
+															</a>
 															<a href="<?php echo base_url('index.php/logout'); ?>"
 																onclick='return confirm("Apakah anda yakin akan logout?");'>
 																<span class="fa fa-lock author-log-ic"></span>Log
 																Out
 																(<?php echo $this->session->userdata("user")->tipe_user; ?>)
-															</a>
-															<a href="<?php echo base_url("index.php/user/{$this->session->userdata('user')->id}/edit"); ?>">
-																<span class="fa fa-gear"></span> &nbsp;Edit
 															</a>
 														</li>
 													</ul>
@@ -259,7 +259,7 @@
 									<ul class="mobile-menu-nav">
 										<li>
 											<ul class="collapse dropdown-header-top">
-												<?php if(in_array($this->session->userdata('user')->tipe_user, ['admin', 'manager'])) : ?>
+												<?php if(in_array($this->session->userdata('user')->tipe_user, ['superadmin', 'admin', 'manager'])) : ?>
 												<li>
 													<a href='<?php echo base_url("index.php/awal"); ?>'
 														class='<?php echo $this->uri->segment(1) == "awal" ? "active" : ""; ?>'><strong>Dashboard</strong></a>

@@ -96,15 +96,18 @@
 														<label class="login2">SATUAN</label>
 													</div>
 													<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-														<select class="form-control custom-select-value" name="satuan[]">
+														<!-- <select class="form-control custom-select-value" name="satuan[]">
 															<option value=''>-- PILIH SATUAN --</option>
 															<option value='unit'>UNIT</option>
 															<option value='m'>M</option>
 															<option value='Ls'>Ls</option>
-														</select>
+														</select> -->
+														<input type="text" value=''
+															name='satuan[]' class="form-control" placeholder="Input Satuan">
 													</div>
 												</div>
 											</div>
+											
 											<div class="form-group-inner">
 												<div class="row">
 													<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -157,12 +160,13 @@
 														<label class="login2">SATUAN</label>
 													</div>
 													<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-														<select class="form-control custom-select-value" name="satuan[]">
+														<!-- <select class="form-control custom-select-value" name="satuan[]">
 															<option value=''>-- PILIH SATUAN --</option>
 															<option value='unit' <?php echo set_value("satuan[$index]") == "unit" ? "selected": ""; ?>>UNIT</option>
 															<option value='m' <?php echo set_value("satuan[$index]") == "m" ? "selected": ""; ?>>M</option>
 															<option value='Ls' <?php echo set_value("satuan[$index]") == "Ls" ? "selected": ""; ?>>Ls</option>
-														</select>
+														</select> -->
+														<input type="text" value='<?php echo set_value("satuan[$index]"); ?>' name='satuan[]' class="form-control" placeholder="Input Satuan">
 														<?php echo "<label class='text-danger'>" . form_error("satuan[$index]") . "</label>"; ?>
 													</div>
 												</div>

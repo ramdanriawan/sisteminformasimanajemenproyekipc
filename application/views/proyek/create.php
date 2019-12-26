@@ -103,18 +103,6 @@
 											</div>
 										</div>
 									</div>
-									<div class="form-group-inner">
-										<div class="row">
-											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-												<label class="login2">PROGRESS (%)</label>
-											</div>
-											<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-												<input name='progress' type="number" class="form-control"
-													value='<?php echo set_value('progress'); ?>' required min="0" max='100'>
-												<?php echo "<label class='text-danger'>" . form_error('progress') . "</label>"; ?>
-											</div>
-										</div>
-									</div>
 																		
 									<div class="login-btn-inner">
 										<div class="row">

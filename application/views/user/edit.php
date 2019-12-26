@@ -76,6 +76,29 @@
 											</div>
 										</div>
 									</div>
+									<?php if( in_array($user->tipe_user, ["admin", "rekanan", "manager"] ) && $this->session->userdata('user')->tipe_user == "superadmin"): ?>
+									<div class="form-group-inner">
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+												<label class="login2">TIPE USER</label>
+											</div>
+											<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+												<select class="form-control custom-select-value" name="tipe_user" required>
+													<option value='manager'
+														<?php echo $user->tipe_user == "manager" ? "selected" : ""; ?>>
+														Manager</option>
+													<option value='rekanan'
+														<?php echo $user->tipe_user == "rekanan" ? "selected" : ""; ?>>
+														Rekanan</option>
+													<option value='admin'
+														<?php echo $user->tipe_user == "admin" ? "selected" : ""; ?>>
+														Admin</option>
+												</select>
+												<?php echo "<label class='text-danger'>" . form_error('tipe_user') . "</label>"; ?>
+											</div>
+										</div>
+									</div>
+									<?php elseif( in_array($user->tipe_user, ["rekanan", "manager"] ) && $this->session->userdata('user')->tipe_user == "admin"): ?>
 									<div class="form-group-inner">
 										<div class="row">
 											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -94,6 +117,40 @@
 											</div>
 										</div>
 									</div>
+									<?php elseif($user->tipe_user == "superadmin" && $this->session->userdata('user')->tipe_user == "superadmin"): ?>
+									<div class="form-group-inner">
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+												<label class="login2">TIPE USER</label>
+											</div>
+											<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+												<select class="form-control custom-select-value" name="tipe_user">
+													<option value='superadmin'
+														<?php echo $user->tipe_user == "superadmin" ? "selected" : ""; ?>>
+														Superadmin</option>
+												</select>
+												<?php echo "<label class='text-danger'>" . form_error('tipe_user') . "</label>"; ?>
+											</div>
+										</div>
+									</div>
+									<?php elseif($user->tipe_user == "admin" && $this->session->userdata('user')->tipe_user == "admin"): ?>
+									<div class="form-group-inner">
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+												<label class="login2">TIPE USER</label>
+											</div>
+											<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+												<select class="form-control custom-select-value" name="tipe_user">
+													<option value='superadmin'
+														<?php echo $user->tipe_user == "admin" ? "selected" : ""; ?>>
+														Admin</option>
+												</select>
+												<?php echo "<label class='text-danger'>" . form_error('tipe_user') . "</label>"; ?>
+											</div>
+										</div>
+									</div>
+									<?php endif; ?>
+
 									<div class="login-btn-inner">
 										<div class="row">
 											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
